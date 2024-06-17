@@ -6,7 +6,8 @@ const SignIn = ({ onSignIn }) => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
-      onSignIn(user.email);
+      onSignIn(user.email, user.displayName);
+      console.log("User signed in:", user);
     } catch (error) {
       console.error("Error during sign-in:", error);
     }

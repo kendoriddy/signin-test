@@ -4,7 +4,7 @@ const generateOTP = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
 
-const OtpDisplay = ({ email }) => {
+const OtpDisplay = ({ email, displayName }) => {
   const [otp, setOtp] = useState("");
   const [expiryTime, setExpiryTime] = useState(null);
 
@@ -12,7 +12,7 @@ const OtpDisplay = ({ email }) => {
     if (email) {
       const otp = generateOTP();
       setOtp(otp);
-      setExpiryTime(Date.now() + 30000); // OTP valid for 30 seconds
+      setExpiryTime(Date.now() + 30000);
 
       const timer = setTimeout(() => {
         setOtp("");
@@ -26,6 +26,7 @@ const OtpDisplay = ({ email }) => {
   return (
     <div>
       {email && <p>Email: {email}</p>}
+      {displayName && <p>Name: {displayName}</p>}
       {otp && <p>OTP: {otp} (expires in 30 seconds)</p>}
       {!otp && email && <p>OTP has expired</p>}
     </div>
