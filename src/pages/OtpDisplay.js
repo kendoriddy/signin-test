@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import styles from "../styles/App.module.css";
 import { generateOTP } from "../utils/generateOTP";
 
@@ -9,25 +10,30 @@ const OtpDisplay = ({ email, displayName }) => {
 
   useEffect(() => {
     if (email) {
-      const otp = generateOTP();
-      setOtp(otp);
-      setExpiryTime(Date.now() + 30000);
-      setCountdown(30);
-
-      const timer = setTimeout(() => {
-        setOtp("");
-        setExpiryTime(null);
+      try {
+        const otp = generateOTP();
+        setOtp(otp);
+        setExpiryTime(Date.now() + 30000);
         setCountdown(30);
-      }, 30000);
 
-      const countdownInterval = setInterval(() => {
-        setCountdown((prevCountdown) => prevCountdown - 1);
-      }, 1000);
+        const timer = setTimeout(() => {
+          setOtp("");
+          setExpiryTime(null);
+          setCountdown(30);
+        }, 30000);
 
-      return () => {
-        clearTimeout(timer);
-        clearInterval(countdownInterval);
-      };
+        const countdownInterval = setInterval(() => {
+          setCountdown((prevCountdown) => prevCountdown - 1);
+        }, 1000);
+
+        return () => {
+          clearTimeout(timer);
+          clearInterval(countdownInterval);
+        };
+      } catch (error) {
+        console.error("Error generating OTP:", error);
+        toast.error("Failed to generate OTP. Please try again.");
+      }
     }
   }, [email]);
 

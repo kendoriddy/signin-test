@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { ToastContainer } from "react-toastify";
 import SignIn from "./pages/SignIn";
 import OtpDisplay from "./pages/OtpDisplay";
 import styles from "./styles/App.module.css";
@@ -18,6 +19,7 @@ const App = () => {
       ) : (
         <OtpDisplay email={user.email} displayName={user.displayName} />
       )}
+      <ToastContainer />
     </div>
   );
 };

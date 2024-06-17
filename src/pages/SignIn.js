@@ -1,5 +1,6 @@
 import React from "react";
 import { auth, provider, signInWithPopup } from "../utils/firebase";
+import { toast } from "react-toastify";
 import styles from "../styles/App.module.css";
 
 const SignIn = ({ onSignIn }) => {
@@ -11,6 +12,7 @@ const SignIn = ({ onSignIn }) => {
       console.log("User signed in:", user);
     } catch (error) {
       console.error("Error during sign-in:", error);
+      toast.error("Failed to sign in with Google. Please try again.");
     }
   };
 
