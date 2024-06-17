@@ -13,17 +13,23 @@ const OtpDisplay = ({ email, displayName }) => {
       try {
         const otp = generateOTP();
         setOtp(otp);
-        setExpiryTime(Date.now() + 30000);
+        const expiry = Date.now() + 30000;
+        setExpiryTime(expiry);
         setCountdown(30);
 
         const timer = setTimeout(() => {
           setOtp("");
           setExpiryTime(null);
-          setCountdown(30);
+          setCountdown(0);
         }, 30000);
 
         const countdownInterval = setInterval(() => {
-          setCountdown((prevCountdown) => prevCountdown - 1);
+          const now = Date.now();
+          const newCountdown = Math.max(Math.floor((expiry - now) / 1000), 0);
+          setCountdown(newCountdown);
+          if (newCountdown <= 0) {
+            clearInterval(countdownInterval); // Stop the interval when countdown reaches 0
+          }
         }, 1000);
 
         return () => {
@@ -43,7 +49,7 @@ const OtpDisplay = ({ email, displayName }) => {
         <p>
           OTP: {otp} (expires in {countdown} seconds)
         </p>
-      )}{" "}
+      )}
       {!otp && email && <p className={styles.expired}>OTP has expired</p>}
     </div>
   );
