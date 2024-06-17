@@ -46,7 +46,7 @@ const OtpDisplay = ({ email, displayName }) => {
           OTP: {otp} (expires in {countdown} seconds)
         </p>
       )}{" "}
-      {!otp && email && <p>OTP has expired</p>}
+      {!otp && email && <p className={styles.expired}>OTP has expired</p>}
     </div>
   );
 };

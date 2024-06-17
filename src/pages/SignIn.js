@@ -9,9 +9,7 @@ const SignIn = ({ onSignIn }) => {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
       onSignIn(user.email, user.displayName);
-      console.log("User signed in:", user);
     } catch (error) {
-      console.error("Error during sign-in:", error);
       toast.error("Failed to sign in with Google. Please try again.");
     }
   };
