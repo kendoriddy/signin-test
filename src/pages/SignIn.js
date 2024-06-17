@@ -1,5 +1,6 @@
 import React from "react";
 import { auth, provider, signInWithPopup } from "../utils/firebase";
+import styles from "../styles/App.module.css";
 
 const SignIn = ({ onSignIn }) => {
   const handleSignIn = async () => {
@@ -14,8 +15,10 @@ const SignIn = ({ onSignIn }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleSignIn}>Sign In with Google</button>
+    <div className={styles.card}>
+      <button className={styles.button} onClick={handleSignIn}>
+        Sign In with Google
+      </button>
     </div>
   );
 };

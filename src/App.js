@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SignIn from "./pages/SignIn";
 import OtpDisplay from "./pages/OtpDisplay";
+import styles from "./styles/App.module.css";
 
 const App = () => {
   const [user, setUser] = useState({ email: "", displayName: "" });
@@ -10,8 +11,8 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <h1>OTP Authentication</h1>
+    <div className={styles.container}>
+      <h1 className={styles.title}>OTP Authentication</h1>
       {!user.email ? (
         <SignIn onSignIn={handleSignIn} />
       ) : (
