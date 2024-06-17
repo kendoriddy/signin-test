@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import SignIn from "./SignIn";
-import OtpDisplay from "./OtpDisplay";
+import SignIn from "./pages/SignIn";
+import OtpDisplay from "./pages/OtpDisplay";
 
 const App = () => {
   const [email, setEmail] = useState("");
