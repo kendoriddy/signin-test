@@ -13,7 +13,7 @@ const App = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>OTP Authentication</h1>
+      <h1 className={styles.title}>Welcome! Kindly login.</h1>
       {!user.email ? (
         <SignIn onSignIn={handleSignIn} />
       ) : (

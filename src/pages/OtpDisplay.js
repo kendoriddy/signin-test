@@ -31,7 +31,6 @@ const OtpDisplay = ({ email, displayName }) => {
           clearInterval(countdownInterval);
         };
       } catch (error) {
-        console.error("Error generating OTP:", error);
         toast.error("Failed to generate OTP. Please try again.");
       }
     }
