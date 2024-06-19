@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import styles from "../styles/App.module.css";
 import { generateOTP } from "../utils/generateOTP";
 
-const OtpDisplay = ({ email, displayName }) => {
+const OtpDisplay = ({ email, displayName, twitterUser }) => {
   const [otp, setOtp] = useState("");
   const [expiryTime, setExpiryTime] = useState(null);
   const [countdown, setCountdown] = useState(0);
@@ -41,10 +41,14 @@ const OtpDisplay = ({ email, displayName }) => {
       }
     }
   }, [email]);
+
   return (
     <div className={styles.card}>
+      {twitterUser && (
+        <img src={twitterUser.photoURL} alt={twitterUser.displayName} />
+      )}
       {email && <p>Email: {email}</p>}
-      {displayName && <p>Name: {displayName}</p>}
+      {displayName && <p>Name: {displayName || twitterUser.displayName}</p>}
       {otp && (
         <p>
           OTP: {otp} (expires in {countdown} seconds)
